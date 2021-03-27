@@ -7,12 +7,23 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Properties
     
     let searchBar = UISearchBar()
-    let repository: PostalCodeRepository 
+    let repository: PostalCodeRepository
+    
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        tableView.bounces = false
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.estimatedRowHeight = 64
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
     
     // MARK: - Lifecycle
     
@@ -33,30 +44,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        tableView.register(PostalCodeViewCell.self, forCellReuseIdentifier: PostalCodeViewCell.identifier())
         
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = UIActivityIndicatorView.Style.medium
-        loadingIndicator.startAnimating();
+        tableView.delegate = self
+        tableView.dataSource = self
         
-        alert.view.addSubview(loadingIndicator)
-        present(alert, animated: true, completion: nil)
-        
+       // startLoading()
         configureUI()
-        repository.getPostalCode(completion: { (result) in
-            switch result {
-            case .success(let postalCode):
-                DispatchQueue.main.async {
-                    self.dismiss(animated: false, completion: nil)
-                }
-                return postalCode
-            case .failure(_):
-                print("FAIL")
-                self.dismiss(animated: false, completion: nil)
-                return [PostalCode(nome_localidade: "", num_cod_postal: "")]
-            }
-        })
+        //resquestAPIPostalCode()
     }
     
     // MARK: - Selectors
@@ -83,6 +78,13 @@ class ViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "Search Postal Code"
         showSearchBarButton(shouldShow: true)
+        
+        view.addSubview(tableView)
+        
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
     func showSearchBarButton(shouldShow: Bool) {
@@ -99,6 +101,55 @@ class ViewController: UIViewController {
         showSearchBarButton(shouldShow: !shouldShow)
         searchBar.showsCancelButton = shouldShow
         navigationItem.titleView = shouldShow ? searchBar : nil
+    }
+    
+    func resquestAPIPostalCode(){
+    repository.getPostalCode(completion: { (result) in
+        switch result {
+        case .success(let postalCode):
+            DispatchQueue.main.async {
+                self.dismiss(animated: false, completion: nil)
+            }
+            return postalCode
+        case .failure(_):
+            print("FAIL")
+            self.dismiss(animated: false, completion: nil)
+            return [PostalCode(nome_localidade: "", num_cod_postal: "")]
+        }
+    })
+    }
+    
+    func startLoading() {
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK - TableView Delegate and DataSource
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier:
+                                                        PostalCodeViewCell.identifier(), for: indexPath) as? PostalCodeViewCell else {
+            return UITableViewCell()
+            
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 64
     }
 }
 
