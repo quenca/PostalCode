@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD22C633260E92B6000542FB /* PostalCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22C632260E92B6000542FB /* PostalCodeRepository.swift */; };
+		CD22C638260E9315000542FB /* URLSessionDataTaskProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22C637260E9315000542FB /* URLSessionDataTaskProtocol.swift */; };
+		CD22C63D260E9334000542FB /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22C63C260E9334000542FB /* URLSessionProtocol.swift */; };
+		CD22C642260E9380000542FB /* PostalCodeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22C641260E9380000542FB /* PostalCodeAPI.swift */; };
+		CD22C64A260E99C9000542FB /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22C649260E99C9000542FB /* ContentProvider.swift */; };
+		CD22C650260F95A1000542FB /* PostalCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22C64F260F95A1000542FB /* PostalCode.swift */; };
 		CDE29A3E260E83E60041E8DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE29A3D260E83E60041E8DC /* AppDelegate.swift */; };
 		CDE29A40260E83E60041E8DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE29A3F260E83E60041E8DC /* SceneDelegate.swift */; };
 		CDE29A42260E83E60041E8DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE29A41260E83E60041E8DC /* ViewController.swift */; };
@@ -35,6 +41,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD22C632260E92B6000542FB /* PostalCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostalCodeRepository.swift; sourceTree = "<group>"; };
+		CD22C637260E9315000542FB /* URLSessionDataTaskProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskProtocol.swift; sourceTree = "<group>"; };
+		CD22C63C260E9334000542FB /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		CD22C641260E9380000542FB /* PostalCodeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostalCodeAPI.swift; sourceTree = "<group>"; };
+		CD22C649260E99C9000542FB /* ContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProvider.swift; sourceTree = "<group>"; };
+		CD22C64F260F95A1000542FB /* PostalCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostalCode.swift; sourceTree = "<group>"; };
 		CDE29A3A260E83E60041E8DC /* PostalCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PostalCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDE29A3D260E83E60041E8DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDE29A3F260E83E60041E8DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +88,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD22C62F260E9273000542FB /* ContentProvider */ = {
+			isa = PBXGroup;
+			children = (
+				CD22C631260E929C000542FB /* Utils */,
+				CD22C630260E9280000542FB /* Repository */,
+				CD22C641260E9380000542FB /* PostalCodeAPI.swift */,
+				CD22C649260E99C9000542FB /* ContentProvider.swift */,
+			);
+			path = ContentProvider;
+			sourceTree = "<group>";
+		};
+		CD22C630260E9280000542FB /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				CD22C632260E92B6000542FB /* PostalCodeRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		CD22C631260E929C000542FB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CD22C637260E9315000542FB /* URLSessionDataTaskProtocol.swift */,
+				CD22C63C260E9334000542FB /* URLSessionProtocol.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		CD22C64E260F9591000542FB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD22C64F260F95A1000542FB /* PostalCode.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		CDE29A31260E83E60041E8DC = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +147,8 @@
 		CDE29A3C260E83E60041E8DC /* PostalCode */ = {
 			isa = PBXGroup;
 			children = (
+				CD22C64E260F9591000542FB /* Model */,
+				CD22C62F260E9273000542FB /* ContentProvider */,
 				CDE29A3D260E83E60041E8DC /* AppDelegate.swift */,
 				CDE29A3F260E83E60041E8DC /* SceneDelegate.swift */,
 				CDE29A41260E83E60041E8DC /* ViewController.swift */,
@@ -257,10 +307,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD22C63D260E9334000542FB /* URLSessionProtocol.swift in Sources */,
 				CDE29A42260E83E60041E8DC /* ViewController.swift in Sources */,
 				CDE29A48260E83E60041E8DC /* PostalCode.xcdatamodeld in Sources */,
+				CD22C650260F95A1000542FB /* PostalCode.swift in Sources */,
+				CD22C64A260E99C9000542FB /* ContentProvider.swift in Sources */,
+				CD22C638260E9315000542FB /* URLSessionDataTaskProtocol.swift in Sources */,
 				CDE29A3E260E83E60041E8DC /* AppDelegate.swift in Sources */,
 				CDE29A40260E83E60041E8DC /* SceneDelegate.swift in Sources */,
+				CD22C642260E9380000542FB /* PostalCodeAPI.swift in Sources */,
+				CD22C633260E92B6000542FB /* PostalCodeRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
