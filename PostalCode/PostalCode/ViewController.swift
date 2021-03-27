@@ -33,14 +33,27 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+        
         configureUI()
         repository.getPostalCode(completion: { (result) in
             switch result {
             case .success(let postalCode):
-                print(postalCode)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: false, completion: nil)
+                }
                 return postalCode
             case .failure(_):
                 print("FAIL")
+                self.dismiss(animated: false, completion: nil)
                 return [PostalCode(nome_localidade: "", num_cod_postal: "")]
             }
         })
@@ -52,17 +65,18 @@ class ViewController: UIViewController {
         searchBar.becomeFirstResponder()
         search(shouldShow: true)
     }
-
+    
     // MARK: - Helper Functions
     
     func configureUI() {
         view.backgroundColor = .white
         
         searchBar.sizeToFit()
+        searchBar.searchTextField.textColor = .white
         searchBar.delegate = self
         
         navigationController?.navigationBar.barTintColor = UIColor(red: 55/255, green: 120/255,
-                                                 blue: 250/255, alpha: 1)
+                                                                   blue: 250/255, alpha: 1)
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
