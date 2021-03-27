@@ -21,12 +21,5 @@ final class ContentProvider: DataProviderProtocol {
         let params = [String: String]()
         api.send(path: .postalCode, method: .GET, parameters: params, completion: completion)
     }
-    
-//    func getStickers(page: Int, completion: @escaping (Result<[Sticker], APIError>) -> ()) {
-//        var params = [String: String]()
-//        params["language"] = SocialSellingServices.language.rawValue
-//        params["page"] = String(page)
-//        api.send(path: .stickers, method: .GET, parameters: params, completion: completion)
-//    }
 }
 

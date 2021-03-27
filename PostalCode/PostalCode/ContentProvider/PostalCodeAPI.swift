@@ -77,25 +77,25 @@ public class API: APIProtocol {
 
                     //check that we have enough columns
                     if columns.count == 17 {
-                            let cod_distrito = columns[0]
-                            let cod_concelho = columns[1]
-                            let cod_localidade = columns[2]
+                        _ = columns[0]
+                        _ = columns[1]
+                        _ = columns[2]
                             let nome_localidade = columns[3]
-                            let cod_arteria = columns[4]
-                            let tipo_arteria = columns[5]
-                            let prep1 = columns[6]
-                            let titulo_arteria = columns[7]
-                            let prep2 = columns[8]
-                            let nome_arteria = columns[9]
-                            let local_arteria = columns[10]
-                            let troco = columns[11]
-                            let porta = columns[12]
-                            let cliente = columns[13]
+                        _ = columns[4]
+                        _ = columns[5]
+                        _ = columns[6]
+                        _ = columns[7]
+                        _ = columns[8]
+                        _ = columns[9]
+                        _ = columns[10]
+                        _ = columns[11]
+                        _ = columns[12]
+                        _ = columns[13]
                             let num_cod_postal = columns[14]
                             let ext_cod_postal = columns[15]
-                            let desig_postal = columns[16]
-
-                            let postalCode = PostalCode(cod_distrito: cod_distrito, cod_concelho: cod_concelho, cod_localidade: cod_localidade, nome_localidade: nome_localidade, cod_arteria: cod_arteria, tipo_arteria: tipo_arteria, prep1: prep1, titulo_arteria: titulo_arteria, prep2: prep2, nome_arteria: nome_arteria, local_arteria: local_arteria, troco: troco, porta: porta, cliente: cliente, num_cod_postal: num_cod_postal, ext_cod_postal: ext_cod_postal, desig_postal: desig_postal)
+                        _ = columns[16]
+                        let codPostal = num_cod_postal + "-" + ext_cod_postal
+                            let postalCode = PostalCode(nome_localidade: nome_localidade, num_cod_postal: codPostal)
                         postalCodes.append(postalCode)
                     }
                 }

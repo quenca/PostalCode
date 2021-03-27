@@ -13,6 +13,7 @@
 		CD22C642260E9380000542FB /* PostalCodeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22C641260E9380000542FB /* PostalCodeAPI.swift */; };
 		CD22C64A260E99C9000542FB /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22C649260E99C9000542FB /* ContentProvider.swift */; };
 		CD22C650260F95A1000542FB /* PostalCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22C64F260F95A1000542FB /* PostalCode.swift */; };
+		CD22C65E260F9B1C000542FB /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22C65D260F9B1C000542FB /* CoreData.swift */; };
 		CDE29A3E260E83E60041E8DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE29A3D260E83E60041E8DC /* AppDelegate.swift */; };
 		CDE29A40260E83E60041E8DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE29A3F260E83E60041E8DC /* SceneDelegate.swift */; };
 		CDE29A42260E83E60041E8DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE29A41260E83E60041E8DC /* ViewController.swift */; };
@@ -47,6 +48,7 @@
 		CD22C641260E9380000542FB /* PostalCodeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostalCodeAPI.swift; sourceTree = "<group>"; };
 		CD22C649260E99C9000542FB /* ContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProvider.swift; sourceTree = "<group>"; };
 		CD22C64F260F95A1000542FB /* PostalCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostalCode.swift; sourceTree = "<group>"; };
+		CD22C65D260F9B1C000542FB /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		CDE29A3A260E83E60041E8DC /* PostalCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PostalCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDE29A3D260E83E60041E8DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDE29A3F260E83E60041E8DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				CD22C630260E9280000542FB /* Repository */,
 				CD22C641260E9380000542FB /* PostalCodeAPI.swift */,
 				CD22C649260E99C9000542FB /* ContentProvider.swift */,
+				CD22C65D260F9B1C000542FB /* CoreData.swift */,
 			);
 			path = ContentProvider;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				CDE29A42260E83E60041E8DC /* ViewController.swift in Sources */,
 				CDE29A48260E83E60041E8DC /* PostalCode.xcdatamodeld in Sources */,
 				CD22C650260F95A1000542FB /* PostalCode.swift in Sources */,
+				CD22C65E260F9B1C000542FB /* CoreData.swift in Sources */,
 				CD22C64A260E99C9000542FB /* ContentProvider.swift in Sources */,
 				CD22C638260E9315000542FB /* URLSessionDataTaskProtocol.swift in Sources */,
 				CDE29A3E260E83E60041E8DC /* AppDelegate.swift in Sources */,
