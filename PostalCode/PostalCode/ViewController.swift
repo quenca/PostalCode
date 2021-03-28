@@ -12,7 +12,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: - Properties
     
     let searchBar = UISearchBar()
-    let repository: PostalCodeRepository
+    private let repository: PostalCodeRepository
+    private var postalCodeList: [PostalCode] = []
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -49,9 +50,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.delegate = self
         tableView.dataSource = self
         
-       // startLoading()
+        startLoading()
         configureUI()
-        //resquestAPIPostalCode()
+        resquestAPIPostalCode()
     }
     
     // MARK: - Selectors
@@ -103,11 +104,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         navigationItem.titleView = shouldShow ? searchBar : nil
     }
     
-    func resquestAPIPostalCode(){
+    func resquestAPIPostalCode() {
     repository.getPostalCode(completion: { (result) in
         switch result {
         case .success(let postalCode):
+            self.postalCodeList = postalCode
             DispatchQueue.main.async {
+                self.tableView.reloadData()
                 self.dismiss(animated: false, completion: nil)
             }
             return postalCode
@@ -134,7 +137,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //MARK - TableView Delegate and DataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
+        return postalCodeList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -144,6 +147,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return UITableViewCell()
             
         }
+        
+        let postalCode = postalCodeList[indexPath.row]
+        cell.setup(postalCode: postalCode)
         
         return cell
     }

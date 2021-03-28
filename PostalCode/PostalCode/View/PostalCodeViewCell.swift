@@ -15,7 +15,7 @@ final class PostalCodeViewCell: UITableViewCell {
         label.text = "Postal Code"
         label.numberOfLines = 1
         label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false 
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -31,6 +31,29 @@ final class PostalCodeViewCell: UITableViewCell {
     
     static func identifier() -> String {
         "PostalCodeCell"
+    }
+    
+    func setup(postalCode: PostalCode) {
+        guard let codPostal = postalCode.num_cod_postal else {
+            return
+        }
+        
+        guard let localidade = postalCode.nome_localidade else {
+            return
+        }
+        postalCodeLabel.text =  codPostal + " " +  localidade
+    }
+    
+    // TO DO: MAKE POSTAL CODE INTO BOLD FONT
+    func boldString(text: String) -> NSAttributedString {
+        
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.boldSystemFont(ofSize: 12)
+        ]
+
+        let attributedString = NSAttributedString(string: text, attributes: attributes)
+        
+        return attributedString
     }
     
     func setupView() {
