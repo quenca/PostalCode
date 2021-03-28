@@ -80,6 +80,9 @@ struct CoreData {
         var predicate: NSPredicate = NSPredicate()
         predicate = NSPredicate(format: "nome_localidade contains[c] '\(searchText)'")
         
+        var predicateCod: NSPredicate = NSPredicate()
+        predicateCod = NSPredicate(format: "num_cod_postal contains[c] '\(searchText)'")
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             let empty: [PostalCode] = []
             return empty
@@ -88,6 +91,7 @@ struct CoreData {
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PostalCodePortugal")
         fetchRequest.predicate = predicate
+        fetchRequest.predicate = predicateCod
         
         do {
             let result = try context.fetch(fetchRequest) as! [NSManagedObject]
