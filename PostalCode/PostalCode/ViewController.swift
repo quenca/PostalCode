@@ -23,6 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.showsHorizontalScrollIndicator = false
         tableView.estimatedRowHeight = 64
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.keyboardDismissMode = .onDrag
         return tableView
     }()
     
