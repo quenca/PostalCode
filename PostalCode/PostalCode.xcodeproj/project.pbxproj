@@ -137,6 +137,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		CD22C66E26111AEB000542FB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CDE29A41260E83E60041E8DC /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		CDE29A31260E83E60041E8DC = {
 			isa = PBXGroup;
 			children = (
@@ -160,12 +168,12 @@
 		CDE29A3C260E83E60041E8DC /* PostalCode */ = {
 			isa = PBXGroup;
 			children = (
+				CD22C66E26111AEB000542FB /* ViewController */,
 				CD22C664260FB27B000542FB /* View */,
 				CD22C64E260F9591000542FB /* Model */,
 				CD22C62F260E9273000542FB /* ContentProvider */,
 				CDE29A3D260E83E60041E8DC /* AppDelegate.swift */,
 				CDE29A3F260E83E60041E8DC /* SceneDelegate.swift */,
-				CDE29A41260E83E60041E8DC /* ViewController.swift */,
 				CDE29A49260E83E90041E8DC /* Assets.xcassets */,
 				CDE29A4B260E83E90041E8DC /* LaunchScreen.storyboard */,
 				CDE29A4E260E83E90041E8DC /* Info.plist */,
