@@ -72,5 +72,36 @@ struct CoreData {
         }
         return postalCodeList
     }
+    
+    func filterData(with searchText: String ) -> [PostalCode] {
+        
+        var postalCodeList = [PostalCode]()
+        
+        var predicate: NSPredicate = NSPredicate()
+        predicate = NSPredicate(format: "nome_localidade contains[c] '\(searchText)'")
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            let empty: [PostalCode] = []
+            return empty
+        }
+        
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PostalCodePortugal")
+        fetchRequest.predicate = predicate
+        
+        do {
+            let result = try context.fetch(fetchRequest) as! [NSManagedObject]
+            
+            for data in result {
+                let postalCode = PostalCode(nome_localidade: data.value(forKey: "nome_localidade") as! String, num_cod_postal: data.value(forKey: "num_cod_postal") as! String)
+
+                postalCodeList.append(postalCode)
+            }
+        } catch {
+            print("error")
+        }
+        
+        return  postalCodeList
+    }
 }
 

@@ -75,9 +75,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                                                                    blue: 250/255, alpha: 1)
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.isTranslucent = false
-        navigationItem.title = "Search Postal Code"
         showSearchBarButton(shouldShow: true)
         
         view.addSubview(tableView)
@@ -178,6 +176,9 @@ extension ViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        let allList = CoreData().retrieveData()
+        postalCodeList = allList
+        tableView.reloadData()
         print("Search bar editing did end..")
     }
     
@@ -186,6 +187,14 @@ extension ViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            let allList = CoreData().retrieveData()
+            postalCodeList = allList
+        } else {
+        let filterList = CoreData().filterData(with: searchText)
+        postalCodeList = filterList
+        tableView.reloadData()
         print("Search text is \(searchText)")
+        }
     }
 }
