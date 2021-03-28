@@ -11,7 +11,7 @@ import CoreData
 
 struct CoreData {
 
-    func createData(arr: [PostalCode]){
+    func createData(data: [PostalCode]){
 
         //As we know that container is set up in the AppDelegates so we need to refer that container.
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -24,7 +24,7 @@ struct CoreData {
 
         //final, we need to add some data to our newly created record for each keys using
 
-        for object in arr {
+        for object in data {
 
             let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
             user.setValue(object.nome_localidade, forKey: "nome_localidade")

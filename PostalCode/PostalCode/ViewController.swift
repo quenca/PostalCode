@@ -105,12 +105,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func resquestAPIPostalCode() {
+        
+        let postalCodeCoreData = CoreData().retrieveData()
+        
+        if postalCodeCoreData.isEmpty {
+        
     repository.getPostalCode(completion: { (result) in
         switch result {
         case .success(let postalCode):
             self.postalCodeList = postalCode
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                CoreData().createData(data: postalCode)
                 self.dismiss(animated: false, completion: nil)
             }
             return postalCode
@@ -120,6 +126,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return [PostalCode(nome_localidade: "", num_cod_postal: "")]
         }
     })
+        } else {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.dismiss(animated: false, completion: nil)
+            }
+            postalCodeList = postalCodeCoreData
+        }
     }
     
     func startLoading() {
