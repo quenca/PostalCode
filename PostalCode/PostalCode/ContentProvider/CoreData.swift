@@ -32,7 +32,6 @@ struct CoreData {
 
         }
 
-
         //Now we have set all the values. The next step is to save them inside the Core Data
 
         do {
@@ -60,9 +59,8 @@ struct CoreData {
         do {
             let result = try managedContext.fetch(fetchRequest)
 
-
             for data in result {
-                let postalCode = PostalCode(nome_localidade: data.value(forKey: "nome_localidade") as! String, num_cod_postal: data.value(forKey: "num_cod_postal") as! String)
+                let postalCode = PostalCode(nome_localidade: data.value(forKey: "nome_localidade") as? String, num_cod_postal: data.value(forKey: "num_cod_postal") as? String)
 
                 postalCodeList.append(postalCode)
             }
@@ -88,16 +86,18 @@ struct CoreData {
             return empty
         }
         
+        let predicateCompound = NSCompoundPredicate(type: .or, subpredicates: [predicate,predicateCod])
+        
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PostalCodePortugal")
-        fetchRequest.predicate = predicate
-        fetchRequest.predicate = predicateCod
+        fetchRequest.predicate = predicateCompound
+        
         
         do {
             let result = try context.fetch(fetchRequest) as! [NSManagedObject]
             
             for data in result {
-                let postalCode = PostalCode(nome_localidade: data.value(forKey: "nome_localidade") as! String, num_cod_postal: data.value(forKey: "num_cod_postal") as! String)
+                let postalCode = PostalCode(nome_localidade: data.value(forKey: "nome_localidade") as? String, num_cod_postal: data.value(forKey: "num_cod_postal") as? String)
 
                 postalCodeList.append(postalCode)
             }
